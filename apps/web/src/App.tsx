@@ -61,7 +61,27 @@ export function App() {
     )
   }, [])
 
-  // data checkpoint + waktu aktif
+  // formatter Intl
+  const dateFormatter = new Intl.DateTimeFormat("id-ID", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  })
+
+  const timeFormatter = new Intl.DateTimeFormat("id-ID", {
+    hour: "2-digit",
+    minute: "2-digit",
+  })
+
+  const fullFormatter = new Intl.DateTimeFormat("id-ID", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  })
+
+  // data checkpoint
   const checkpoints = [
     {
       id: 1,
@@ -89,15 +109,6 @@ export function App() {
       formUrl: "https://forms.gle/HTNCA6UY9wn1ZVZ28",
       startTime: "2026-08-14T10:00:00",
       endTime: "2026-08-14T18:00:00",
-    },
-    {
-      id: 4,
-      name: "Checkpoint 4",
-      lat: -8.653,
-      lng: 115.223,
-      formUrl: "https://forms.gle/2drY22TaiVnEj1sj7",
-      startTime: "2026-08-14T08:00:00",
-      endTime: "2026-08-14T09:30:00",
     },
   ]
 
@@ -130,6 +141,12 @@ export function App() {
             distance <= 100 &&
             isTimeValid
 
+          const start = new Date(cp.startTime)
+          const end = new Date(cp.endTime)
+
+          const sameDay =
+            start.toDateString() === end.toDateString()
+
           return (
             <Item
               key={cp.id}
@@ -141,7 +158,7 @@ export function App() {
                   {cp.name}
                 </ItemTitle>
 
-                <ItemDescription className="mt-1 text-xs line-clamp-5">
+                <ItemDescription className="mt-1 text-xs">
                   <div>{cp.lat}, {cp.lng}</div>
 
                   <div>
@@ -153,8 +170,13 @@ export function App() {
 
                   <div>
                     Waktu:{" "}
-                    {new Date(cp.startTime).toLocaleTimeString()} -{" "}
-                    {new Date(cp.endTime).toLocaleTimeString()}
+                    {sameDay
+                      ? `${dateFormatter.format(start)} ${timeFormatter.format(
+                          start
+                        )} - ${timeFormatter.format(end)}`
+                      : `${fullFormatter.format(start)} - ${fullFormatter.format(
+                          end
+                        )}`}
                   </div>
                 </ItemDescription>
               </ItemContent>
@@ -172,7 +194,7 @@ export function App() {
                   }}
                 >
                   {!isTimeValid
-                    ? now < new Date(cp.startTime)
+                    ? now < start
                       ? "Belum mulai"
                       : "Sudah lewat"
                     : distance && distance > 100
