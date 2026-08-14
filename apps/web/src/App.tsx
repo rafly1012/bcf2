@@ -90,7 +90,7 @@ export function App() {
       lng: 122.986972,
       formUrl: "https://forms.gle/gBYGFYfqsCueBco3A",
       startTime: "2026-08-14T09:00:00",
-      endTime: "2026-08-14T12:00:00",
+      endTime: "2026-08-14T23:50:00",
     },
     {
       id: 2,
