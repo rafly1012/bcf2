@@ -58,9 +58,9 @@ export function App() {
     },
     {
       id: 2,
-      name: "Checkpoint 2",
-      lat: -8.651,
-      lng: 115.221,
+      name: "Checkpoint 2 - Hotel Silvia",
+      lat: -8.6342244,
+      lng: 122.210118,
       formUrl: "https://forms.gle/xst5ZH4vEjhnPHDh9",
     },
     {
