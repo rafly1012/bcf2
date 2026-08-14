@@ -61,6 +61,8 @@ export function App() {
     )
   }, [])
 
+  const MAX_DISTANCE = 530
+
   // formatter Intl
   const dateFormatter = new Intl.DateTimeFormat("id-ID", {
     day: "2-digit",
@@ -95,7 +97,7 @@ export function App() {
     {
       id: 2,
       name: "Checkpoint - Hotel Wailiti (Kegiatan Siang)",
-      lat: 8.594648,
+      lat: -8.594648,
       lng: 122.193500,
       formUrl: "https://forms.gle/EPYKYL9r5uW1CGZo7",
       startTime: "2026-08-15T11:00:00",
@@ -104,7 +106,7 @@ export function App() {
     {
       id: 3,
       name: "Checkpoint - Hotel Wailiti (Kegiatan Malam)",
-      lat: 8.594648,
+      lat: -8.594648,
       lng: 122.193500,
       formUrl: "https://forms.gle/AdX2L4v5Akb7evRr6",
       startTime: "2026-08-15T17:00:00",
@@ -113,7 +115,7 @@ export function App() {
     {
       id: 4,
       name: "Checkpoint - Hotel Wailiti (Istirahat)",
-      lat: 8.594648,
+      lat: -8.594648,
       lng: 122.193500,
       formUrl: "https://forms.gle/KuzF1zVNS33Zp6iW9",
       startTime: "2026-08-15T21:00:00",
@@ -122,7 +124,7 @@ export function App() {
     {
       id: 5,
       name: "Checkpoint - Hotel Silvia (Istirahat)",
-      lat: 8.634244,
+      lat: -8.634244,
       lng: 122.210118,
       formUrl: "https://forms.gle/JMsLZUU6rzU4fFs36",
       startTime: "2026-08-15T21:00:00",
@@ -131,7 +133,7 @@ export function App() {
     {
       id: 6,
       name: "Checkpoint - Go Hotel (Istirahat)",
-      lat: 8.623069,
+      lat: -8.623069,
       lng: 122.220428,
       formUrl: "https://forms.gle/2PGo5zd8GSWoJyPU6",
       startTime: "2026-08-15T21:00:00",
@@ -165,7 +167,7 @@ export function App() {
 
           const canClick =
             distance !== null &&
-            distance <= 100 &&
+            distance <= MAX_DISTANCE &&
             isTimeValid
 
           const start = new Date(cp.startTime)
@@ -190,7 +192,7 @@ export function App() {
 
                   <div>
                     Jarak:{" "}
-                    {distance
+                    {distance !== null
                       ? `${distance.toFixed(1)} meter`
                       : "Mengambil lokasi..."}
                   </div>
@@ -224,7 +226,7 @@ export function App() {
                     ? now < start
                       ? "Belum mulai"
                       : "Sudah lewat"
-                    : distance && distance > 100
+                    : distance !== null && distance > MAX_DISTANCE
                     ? "Terlalu jauh"
                     : "Isi Form"}
                 </Button>
