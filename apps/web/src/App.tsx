@@ -93,9 +93,9 @@ export function App() {
         {/* HEADER */}
         <div className="flex items-center justify-between">
           <img
-            src="/img/danantara.png"
+            src="/img/bri.png"
             alt="Logo Kiri"
-            className="h-20 w-20 object-contain"
+            className="h-15 w-15 object-contain"
           />
 
           <div>
@@ -106,9 +106,9 @@ export function App() {
           </div>
 
           <img
-            src="/img/bri.png"
+            src="/img/bcf.png"
             alt="Logo Kanan"
-            className="h-10 w-10 object-contain"
+            className="h-15 w-15 object-contain"
           />
         </div>
 
@@ -147,7 +147,7 @@ export function App() {
                   variant={canClick ? "default" : "secondary"}
                   size="sm"
                   disabled={!canClick}
-                  className="min-w-[90px]"
+                  className="min-w-22.5"
                   onClick={() => {
                     if (canClick) {
                       window.open(cp.formUrl, "_blank")
