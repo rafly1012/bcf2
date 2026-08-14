@@ -12,7 +12,7 @@ import {
 
 // fungsi hitung jarak (meter)
 function getDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
-  const R = 6371e3 // meter
+  const R = 6371e3
   const toRad = (x: number) => (x * Math.PI) / 180
 
   const dLat = toRad(lat2 - lat1)
@@ -29,8 +29,22 @@ function getDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
   return R * c
 }
 
+// cek waktu aktif
+function isWithinTime(start: string, end: string, now: Date) {
+  return now >= new Date(start) && now <= new Date(end)
+}
+
 export function App() {
   const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null)
+  const [now, setNow] = useState(new Date())
+
+  // update waktu tiap detik
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setNow(new Date())
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [])
 
   // ambil lokasi user
   useEffect(() => {
@@ -47,14 +61,16 @@ export function App() {
     )
   }, [])
 
-  // data checkpoint + form URL
+  // data checkpoint + waktu aktif
   const checkpoints = [
     {
       id: 1,
-      name: "Checkpoint 1 - Branch Office Larantuka",
+      name: "Checkpoint - Branch Office Larantuka",
       lat: -8.342104,
       lng: 122.986972,
       formUrl: "https://forms.gle/gBYGFYfqsCueBco3A",
+      startTime: "2026-08-14T09:00:00",
+      endTime: "2026-08-14T12:00:00",
     },
     {
       id: 2,
@@ -62,6 +78,8 @@ export function App() {
       lat: -8.6342244,
       lng: 122.210118,
       formUrl: "https://forms.gle/xst5ZH4vEjhnPHDh9",
+      startTime: "2026-08-14T13:00:00",
+      endTime: "2026-08-14T15:00:00",
     },
     {
       id: 3,
@@ -69,6 +87,8 @@ export function App() {
       lat: -8.652,
       lng: 115.222,
       formUrl: "https://forms.gle/HTNCA6UY9wn1ZVZ28",
+      startTime: "2026-08-14T10:00:00",
+      endTime: "2026-08-14T18:00:00",
     },
     {
       id: 4,
@@ -76,6 +96,8 @@ export function App() {
       lat: -8.653,
       lng: 115.223,
       formUrl: "https://forms.gle/2drY22TaiVnEj1sj7",
+      startTime: "2026-08-14T08:00:00",
+      endTime: "2026-08-14T09:30:00",
     },
   ]
 
@@ -85,24 +107,14 @@ export function App() {
 
         {/* HEADER */}
         <div className="flex items-center justify-between">
-          <img
-            src="/img/bri.png"
-            alt="Logo Kiri"
-            className="h-15 w-15 object-contain"
-          />
-
+          <img src="/img/bri.png" className="h-15 w-15 object-contain" />
           <div>
             <h1 className="text-lg font-bold text-center">
               Branch Office Larantuka
             </h1>
             <p className="text-center">Brilian Culture Fest 2026</p>
           </div>
-
-          <img
-            src="/img/bcf.png"
-            alt="Logo Kanan"
-            className="h-15 w-15 object-contain"
-          />
+          <img src="/img/bcf.png" className="h-15 w-15 object-contain" />
         </div>
 
         {/* LIST CHECKPOINT */}
@@ -111,7 +123,12 @@ export function App() {
             location &&
             getDistance(location.lat, location.lng, cp.lat, cp.lng)
 
-          const canClick = distance !== null && distance <= 100
+          const isTimeValid = isWithinTime(cp.startTime, cp.endTime, now)
+
+          const canClick =
+            distance !== null &&
+            distance <= 100 &&
+            isTimeValid
 
           return (
             <Item
@@ -126,11 +143,18 @@ export function App() {
 
                 <ItemDescription className="mt-1 text-xs">
                   <div>{cp.lat}, {cp.lng}</div>
+
                   <div>
                     Jarak:{" "}
                     {distance
                       ? `${distance.toFixed(1)} meter`
                       : "Mengambil lokasi..."}
+                  </div>
+
+                  <div>
+                    Waktu:{" "}
+                    {new Date(cp.startTime).toLocaleTimeString()} -{" "}
+                    {new Date(cp.endTime).toLocaleTimeString()}
                   </div>
                 </ItemDescription>
               </ItemContent>
@@ -147,7 +171,13 @@ export function App() {
                     }
                   }}
                 >
-                  {canClick ? "Isi Form" : "Terlalu jauh"}
+                  {!isTimeValid
+                    ? now < new Date(cp.startTime)
+                      ? "Belum mulai"
+                      : "Sudah lewat"
+                    : distance && distance > 100
+                    ? "Terlalu jauh"
+                    : "Isi Form"}
                 </Button>
               </ItemActions>
             </Item>
