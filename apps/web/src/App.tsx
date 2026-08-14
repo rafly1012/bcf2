@@ -141,7 +141,7 @@ export function App() {
                   {cp.name}
                 </ItemTitle>
 
-                <ItemDescription className="mt-1 text-xs">
+                <ItemDescription className="mt-1 text-xs line-clamp-5">
                   <div>{cp.lat}, {cp.lng}</div>
 
                   <div>
