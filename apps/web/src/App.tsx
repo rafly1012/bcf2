@@ -61,7 +61,7 @@ export function App() {
     )
   }, [])
 
-  const MAX_DISTANCE = 530
+  const MAX_DISTANCE = 130
 
   // formatter Intl
   const dateFormatter = new Intl.DateTimeFormat("id-ID", {
