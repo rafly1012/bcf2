@@ -97,7 +97,7 @@ export function App() {
   ]
 
   return (
-    <div className="flex min-h-svh items-center justify-center p-6 bg-muted/40">
+    <div className="flex min-h-svh items-start justify-center p-6 bg-muted/40">
       <div className="w-full max-w-md flex flex-col gap-6 text-sm">
 
         {/* HEADER */}
