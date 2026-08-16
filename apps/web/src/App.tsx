@@ -91,8 +91,8 @@ export function App() {
       lat: -8.342104,
       lng: 122.986972,
       formUrl: "https://forms.gle/5e1rCTANLPJ7ENZW7",
-      startTime: "2026-08-15T06:00:00",
-      endTime: "2026-08-15T08:00:00",
+      startTime: "2026-08-17T06:00:00",
+      endTime: "2026-08-17T09:00:00",
     },
   ]
 
@@ -102,13 +102,13 @@ export function App() {
 
         {/* HEADER */}
         <div className="flex items-center justify-between">
-          <img src="/img/bri.png" className="h-15 w-15 object-contain" />
+          <img src="/img/ri.png" className="h-15 w-15 object-contain" />
           <div>
             <h1 className="text-lg font-bold text-center">
               Branch Office Larantuka
             </h1>
           </div>
-          <img src="/img/ri.png" className="h-15 w-15 object-contain" />
+          <img src="/img/bri.png" className="h-15 w-15 object-contain" />
         </div>
 
         {/* LIST CHECKPOINT */}
