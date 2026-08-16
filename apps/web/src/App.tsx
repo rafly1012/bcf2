@@ -87,57 +87,12 @@ export function App() {
   const checkpoints = [
     {
       id: 1,
-      name: "Checkpoint - Branch Office Larantuka",
+      name: "Check Point - HUT RI ke-81 di Kantor Cabang Larantuka",
       lat: -8.342104,
       lng: 122.986972,
       formUrl: "https://forms.gle/5e1rCTANLPJ7ENZW7",
       startTime: "2026-08-15T06:00:00",
       endTime: "2026-08-15T08:00:00",
-    },
-    {
-      id: 2,
-      name: "Checkpoint - Hotel Wailiti (Kegiatan Siang)",
-      lat: -8.594648,
-      lng: 122.193500,
-      formUrl: "https://forms.gle/EPYKYL9r5uW1CGZo7",
-      startTime: "2026-08-15T11:00:00",
-      endTime: "2026-08-15T13:00:00",
-    },
-    {
-      id: 3,
-      name: "Checkpoint - Hotel Wailiti (Kegiatan Malam)",
-      lat: -8.594648,
-      lng: 122.193500,
-      formUrl: "https://forms.gle/AdX2L4v5Akb7evRr6",
-      startTime: "2026-08-15T17:00:00",
-      endTime: "2026-08-15T18:00:00",
-    },
-    {
-      id: 4,
-      name: "Checkpoint - Hotel Wailiti (Istirahat)",
-      lat: -8.594648,
-      lng: 122.193500,
-      formUrl: "https://forms.gle/KuzF1zVNS33Zp6iW9",
-      startTime: "2026-08-15T21:00:00",
-      endTime: "2026-08-15T23:00:00",
-    },
-    {
-      id: 5,
-      name: "Checkpoint - Hotel Silvia (Istirahat)",
-      lat: -8.634244,
-      lng: 122.210118,
-      formUrl: "https://forms.gle/JMsLZUU6rzU4fFs36",
-      startTime: "2026-08-15T21:00:00",
-      endTime: "2026-08-15T23:00:00",
-    },
-    {
-      id: 6,
-      name: "Checkpoint - Go Hotel (Istirahat)",
-      lat: -8.623069,
-      lng: 122.220428,
-      formUrl: "https://forms.gle/2PGo5zd8GSWoJyPU6",
-      startTime: "2026-08-15T21:00:00",
-      endTime: "2026-08-15T23:00:00",
     },
   ]
 
@@ -152,9 +107,8 @@ export function App() {
             <h1 className="text-lg font-bold text-center">
               Branch Office Larantuka
             </h1>
-            <p className="text-center">Brilian Culture Fest 2026</p>
           </div>
-          <img src="/img/bcf.png" className="h-15 w-15 object-contain" />
+          <img src="/img/ri.png" className="h-15 w-15 object-contain" />
         </div>
 
         {/* LIST CHECKPOINT */}
@@ -234,8 +188,6 @@ export function App() {
             </Item>
           )
         })}
-
-        <p className="text-center">Berkolaborasi Memberi Arti</p>
       </div>
     </div>
   )
