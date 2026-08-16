@@ -90,7 +90,7 @@ export function App() {
       name: "Check Point - HUT RI ke-81 di Kantor Cabang Larantuka",
       lat: -8.342104,
       lng: 122.986972,
-      formUrl: "https://forms.gle/5e1rCTANLPJ7ENZW7",
+      formUrl: "https://forms.gle/iCFX7CNfeczzPiMC6",
       startTime: "2026-08-17T06:00:00",
       endTime: "2026-08-17T09:00:00",
     },
